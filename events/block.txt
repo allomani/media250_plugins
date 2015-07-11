@@ -1,0 +1,38 @@
+<?
+require_once ("plugins/events/calendar.class.php");
+
+
+if($_GET['calmonth'] == '')
+$month = date("m");
+else
+$month = intval($_GET['calmonth']);
+if($_GET['calyear'] == '')
+$year = date("Y");
+else
+$year = intval($_GET['calyear']);;
+
+
+$MyCal = new calendar('auto', 'auto', 'en');
+
+$MyCal->monday_1st = '1';
+
+
+$query = mysql_query("SELECT * FROM events_data WHERE month='$month' and year='$year'");
+// Thanks to this loop, we get a string ($DAYS) in which are the days when something have been added to the sql table
+// Please note the numbers in the string must be separated by a ':' (ex: '02:09:15:29')
+while ($fetch = mysql_fetch_array($query)) {
+    $day = $fetch['day'];
+    $DAYS .= $day . ':';
+}
+// Deletes the final ':'
+$DAYS = substr($DAYS, 0, -1);
+// We call the links() function : we give first the string in which are the days and then the pattern of the link
+// {D} = the linked day
+// {M} = the month of the calendar
+// {Y} = the year of the calendar
+$MyCal->links($DAYS, "index.php?action=browse_events&d={D}&amp;m={M}&amp;y={Y}");
+// We call the generate() function, all is in its name
+
+$MyCal->generate();
+// We call the draw() function which allow you to display the calendar generated before
+$MyCal->draw();

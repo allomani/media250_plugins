@@ -1,0 +1,21 @@
+ALTER TABLE `mobile_data` ADD `userid` INT NOT NULL ;
+
+
+CREATE TABLE `members_files` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` text NOT NULL,
+  `url` text NOT NULL,
+  `date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `downloads` int(11) NOT NULL default '0',
+  `views` int(11) NOT NULL default '0',
+  `cat` int(11) NOT NULL default '0',
+  `img` text NOT NULL,
+  `thumb` text NOT NULL,
+  `lyrics` text NOT NULL,
+  `details` text NOT NULL,
+  `active` int(11) NOT NULL default '0',
+  `votes` int(11) NOT NULL default '0',
+  `votes_total` int(11) NOT NULL default '0',
+  `userid` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ;

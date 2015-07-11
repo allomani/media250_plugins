@@ -1,0 +1,7 @@
+function report(id,cid)
+{
+
+if(confirm('Â· √‰  „ √ﬂœ ?')){
+msgwindow=window.open("report.php?id="+id+"&cid="+cid,"displaywindow","toolbar=no,scrollbars=no,width=350,height=250,top=200,left=200")
+}
+}
